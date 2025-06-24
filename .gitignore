@@ -50,6 +50,10 @@ package.json
 /share/
 /src/
 /venv/
+/venv39/
+/venv39
+venv39/
 /ENV/
 /env/
 .venv/
+.venv39/
