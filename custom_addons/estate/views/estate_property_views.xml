@@ -26,36 +26,6 @@
         <field name="name">estate.property.form</field>
         <field name="model">estate.property</field>
         <field name="arch" type="xml">
-            <!--            <form>-->
-            <!--                <sheet>-->
-            <!--                    <group col="3">-->
-            <!--                        <group>-->
-            <!--                            <field name="name"/>-->
-            <!--                            <field name="description"/>-->
-            <!--                            <field name="postcode"/>-->
-            <!--                            <field name="date_availability"/>-->
-            <!--                            <field name="expected_price"/>-->
-            <!--                        </group>-->
-            <!--                        <group>-->
-            <!--                            <field name="selling_price"/>-->
-            <!--                            <field name="bedrooms"/>-->
-            <!--                            <field name="living_area"/>-->
-            <!--                            <field name="facades"/>-->
-            <!--                            <field name="garage"/>-->
-            <!--                        </group>-->
-            <!--                        <group>-->
-            <!--                            <field name="garden"/>-->
-            <!--                            <field name="garden_area"/>-->
-            <!--                            <field name="garden_orientation"/>-->
-            <!--                            <field name="active"/>-->
-            <!--                            <field name="state"/>-->
-            <!--                            <field name="property_type_id"/>-->
-
-            <!--                        </group>-->
-            <!--                    </group>-->
-            <!--                </sheet>-->
-            <!--            </form>-->
-
             <form string="name">
                 <sheet>
                     <h1>
@@ -80,6 +50,15 @@
                     <notebook>
                         <page string="Description">
                             <field name="description"/>
+                        </page>
+                        <page string="Offers">
+                           <field name="offer_ids">
+                                <tree>
+                                    <field name="price"/>
+                                    <field name="partner_id"/>
+                                    <field name="status"/>
+                                </tree>
+                            </field>
                         </page>
                         <page string="Details">
                             <group>

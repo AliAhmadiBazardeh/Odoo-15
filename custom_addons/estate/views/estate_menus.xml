@@ -15,7 +15,7 @@
     <menuitem id="menu_estate_Advertisements"
               name="Advertisements"
               parent="menu_estate_root"
-              action="action_estate_property_type"/>
+              action="action_estate_property_offer"/>
 
     <menuitem id="menu_estate_setting"
               name="Setting"
