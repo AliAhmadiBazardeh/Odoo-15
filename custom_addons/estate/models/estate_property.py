@@ -46,7 +46,23 @@ class EstateProperty(models.Model):
     expected_price = fields.Float(required=True)
     selling_price = fields.Float(readonly=True, copy=False)
     bedrooms = fields.Integer(default=2)
-    total_area = fields.Float()
+
+    facades = fields.Integer()
+    garden = fields.Boolean()
+    garden_orientation = fields.Selection(
+        [('north', 'North'), ('south', 'South'), ('east', 'East'), ('west', 'West')],
+        string="Garden Orientation"
+    )
+
+    @api.onchange("garden")
+    def _onchange_garden(self):
+        if self.garden:
+            self.garden_area = 10
+            self.garden_orientation = 'north'
+        else:
+            self.garden_area = 0
+            self.garden_orientation = None
+
     garden_area = fields.Float()
     living_area = fields.Float()
     total_area = fields.Float(compute="_compute_total_area")
@@ -55,14 +71,6 @@ class EstateProperty(models.Model):
         for record in self:
             record.total_area = record.living_area + record.garden_area
 
-
-    facades = fields.Integer()
-    garage = fields.Boolean()
-    garden = fields.Boolean()
-    garden_orientation = fields.Selection(
-        [('north', 'North'), ('south', 'South'), ('east', 'East'), ('west', 'West')],
-        string="Garden Orientation"
-    )
     active = fields.Boolean(default=True)
     state = fields.Selection(
         [
