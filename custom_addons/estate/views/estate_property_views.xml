@@ -4,7 +4,7 @@
         <field name="name">estate.property.tree</field>
         <field name="model">estate.property</field>
         <field name="arch" type="xml">
-            <tree>
+        <tree string="Estate Properties" decoration-success="selling_price > 0" decoration-danger="expected_price > 0 and selling_price == 0">
                 <field name="name"/>
                 <field name="property_type_id"/>
                 <field name="buyer_id"/>
@@ -26,7 +26,7 @@
         <field name="name">estate.property.form</field>
         <field name="model">estate.property</field>
         <field name="arch" type="xml">
-            <form string="name">
+            <form string="Estate Property" class="o_form_sheet_bg">
                 <sheet>
                     <h1>
                         <field name="name"/>

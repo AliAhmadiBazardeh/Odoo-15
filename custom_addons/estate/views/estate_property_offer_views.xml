@@ -11,7 +11,7 @@
                 <field name="property_id"/>
                 <field name="validity"/>
                 <field name="date_deadline"/>
-                <field name="status"/>
+                <field decoration-success="status == 'accepted'" decoration-danger="status == 'refused'" name="status"/>
 
             </tree>
         </field>
