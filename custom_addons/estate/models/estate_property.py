@@ -77,4 +77,4 @@ class EstateProperty(models.Model):
             self.garden_orientation = None
 
     def accept_action(self):
-        for record in self:
+        pass
