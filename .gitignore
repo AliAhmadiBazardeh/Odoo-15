@@ -104,3 +104,6 @@ pip-delete-this-directory.txt
 
 # Abstra
 .abstra/
+
+# log
+odoo.log
