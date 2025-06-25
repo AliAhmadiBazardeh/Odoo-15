@@ -1,6 +1,4 @@
 <odoo>
-
-
     <!-- Tree View -->
     <record id="view_estate_property_tree" model="ir.ui.view">
         <field name="name">estate.property.tree</field>
@@ -11,12 +9,14 @@
                 <field name="property_type_id"/>
                 <field name="buyer_id"/>
                 <field name="sale_person_id"/>
-                <field name="postcode"/>
                 <field name="bedrooms"/>
                 <field name="living_area"/>
+                <field name="garden_area"/>
+                <field name="total_area"/>
+                <field name="date_availability"/>
                 <field name="expected_price"/>
                 <field name="selling_price"/>
-                <field name="date_availability"/>
+                <field name="best_offer"/>
             </tree>
         </field>
     </record>
@@ -33,26 +33,38 @@
                     </h1>
                     <div class="row">
                         <div class="col-md-6">
-                            <group>
                                 <field name="tag_ids" widget="many2many_tags"/>
+
+                            <group>
                                 <field name="property_type_id"/>
                                 <field name="postcode"/>
+                                <field name="date_availability"/>
                             </group>
                         </div>
                         <div class="col-md-6">
                             <group>
-                                <field name="date_availability"/>
+
+
                                 <field name="expected_price"/>
+                                <field name="best_offer"/>
                                 <field name="selling_price"/>
                             </group>
                         </div>
                     </div>
                     <notebook>
                         <page string="Description">
-                            <field name="description"/>
+                            <h3>
+                                <field name="description"/>
+                            </h3>
+                            <group>
+                                <field name="living_area"/>
+                                <field name="garden_area"/>
+                                <field name="total_area"/>
+
+                            </group>
                         </page>
                         <page string="Offers">
-                           <field name="offer_ids">
+                            <field name="offer_ids">
                                 <tree>
                                     <field name="price"/>
                                     <field name="partner_id"/>
@@ -61,7 +73,7 @@
                             </field>
                         </page>
                         <page string="Details">
-                            <group>
+                            <group class="col-6">
                                 <field name="buyer_id"/>
                                 <field name="sale_person_id"/>
                             </group>
