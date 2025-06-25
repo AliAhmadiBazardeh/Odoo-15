@@ -78,3 +78,5 @@ class EstateProperty(models.Model):
 
     def accept_action(self):
         pass
+    def refuse_action(self):
+        pass
