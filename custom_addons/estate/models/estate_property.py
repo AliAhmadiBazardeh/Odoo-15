@@ -31,10 +31,12 @@ class EstateProperty(models.Model):
     tag_ids = fields.Many2many("estate.property.tag", string="Tags")
     offer_ids = fields.One2many("estate.property.offer", "property_id", string="Offers")
 
-    best_offer = fields.Float(computed="_compute_offers")
+    best_offer = fields.Float(compute="_compute_offers")
     @api.depends("offer_ids")
     def _compute_offers(self):
         for record in self:
+            # record.best_offer = any(l.price > 50 for l in record.offer_ids)
+
             prices = record.offer_ids.mapped("price")
             record.best_offer = max(prices) if prices else 0.0
 
