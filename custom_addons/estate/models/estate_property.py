@@ -38,7 +38,6 @@ class EstateProperty(models.Model):
             prices = record.offer_ids.mapped("price")
             record.best_offer = max(prices) if prices else 0.0
 
-
     postcode = fields.Char()
     date_availability = fields.Date(
         copy=False,
