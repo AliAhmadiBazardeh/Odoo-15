@@ -27,6 +27,10 @@
         <field name="model">estate.property</field>
         <field name="arch" type="xml">
             <form string="Estate Property" class="o_form_sheet_bg">
+                <header>
+                    <button class="btn btn-danger" icon="fa-check" type="object" string="Sold" />
+                    <button class="btn btn-warning" name="action_do_something" type="object" string="Cancel" />
+                </header>
                 <sheet>
                     <h1>
                         <field name="name"/>
