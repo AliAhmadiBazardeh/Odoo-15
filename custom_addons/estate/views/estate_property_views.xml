@@ -29,10 +29,11 @@
         <field name="name">estate.property.form</field>
         <field name="model">estate.property</field>
         <field name="arch" type="xml">
-            <form string="Estate Property" class="o_form_sheet_bg">
+            <form string="Estate Property">
                 <header>
                     <button class="btn btn-danger" icon="fa-check" name="action_sold" type="object" string="Sold"/>
                     <button class="btn btn-warning" name="action_cancel" type="object" string="Cancel"/>
+                    <field name="state" widget="statusbar" statusbar_visible="new,offer_received,offer_accepted,sold,canceled"/>
                 </header>
                 <sheet>
                     <h1>
@@ -55,7 +56,6 @@
                                 <field name="expected_price"/>
                                 <field name="best_offer"/>
                                 <field name="selling_price"/>
-                                <field name="state"/>
                             </group>
                         </div>
                     </div>
