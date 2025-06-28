@@ -88,3 +88,8 @@ class EstateProperty(models.Model):
             if rec.state == 'sold':
                 raise UserError("Sold property cannot be cancelled.")
             rec.state = 'cancelled'
+
+    _sql_constraints = [
+        ('selling_price', 'CHECK(selling_price >= 0)', 'The Selling Price must be positive.'),
+        ('expected_price', 'CHECK(expected_price >= 0 )', 'The Expected Price must be positive.'),
+    ]
