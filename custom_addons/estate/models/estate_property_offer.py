@@ -1,7 +1,6 @@
 from datetime import timedelta, date
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError,ValidationError
 
-from Tools.scripts import diff
 
 from odoo import models, fields, api
 
@@ -27,6 +26,7 @@ class EstatePropertyOffer(models.Model):
         for record in self:
             create = record.create_date or fields.Date.today()
             record.date_deadline = create + timedelta(days=record.validity)
+
 
     def _inverse_deadline(self):
         for record in self:
