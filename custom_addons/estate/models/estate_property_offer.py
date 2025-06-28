@@ -1,4 +1,5 @@
 from datetime import timedelta, date
+from odoo.exceptions import UserError
 
 from Tools.scripts import diff
 
@@ -13,7 +14,6 @@ class EstatePropertyOffer(models.Model):
         [('accepted', 'Accepted'),
                   ('refused', 'Refused')
          ],
-    required = True,
     copy = False,
     )
     partner_id = fields.Many2one('res.partner',string='Partner',required=True)
@@ -33,3 +33,29 @@ class EstatePropertyOffer(models.Model):
             create = record.create_date.date() or fields.Date.today()
             day_diff = record.date_deadline - create
             record.validity = day_diff.days
+
+    def action_confirm(self):
+        for rec in self:
+            if rec.status == 'accepted':
+                raise UserError("This offer has already been confirmed.")
+
+            # check any property_id has offer that status was accepted
+            if any(offer.status == 'accepted' for offer in rec.property_id.offer_ids):
+                raise UserError("Only one offer can be accepted for a given property!")
+
+            rec.property_id.buyer_id = rec.partner_id
+            rec.property_id.selling_price = rec.price
+            rec.property_id.state = 'sold'
+            rec.status = 'accepted'
+
+        return True
+
+    def action_refuse(self):
+        for rec in self:
+            if rec.status == 'refused':
+                raise UserError("This offer has already been refused.")
+            if rec.status == 'accepted':
+                raise UserError("Accepted offers cannot be refused.")
+
+            rec.status = 'refused'
+        return True
