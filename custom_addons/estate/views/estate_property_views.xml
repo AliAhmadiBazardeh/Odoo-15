@@ -51,6 +51,8 @@
                             </group>
                         </div>
                         <div class="col-md-6">
+                            <field name="feature_ids" widget="many2many_tags"/>
+
                             <group>
 
 

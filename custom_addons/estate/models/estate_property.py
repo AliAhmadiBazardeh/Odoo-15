@@ -15,6 +15,7 @@ class EstateProperty(models.Model):
     sale_person_id = fields.Many2one('res.users', string='Sale Person',default=lambda self: self.env.user)
     tag_ids = fields.Many2many("estate.property.tag", string="Tags")
     offer_ids = fields.One2many("estate.property.offer", "property_id", string="Offers")
+    feature_ids = fields.Many2many('estate.property.feature',string="Features")
     best_offer = fields.Float(compute="_compute_offers")
     postcode = fields.Char()
     date_availability = fields.Date(copy=False, default=lambda self: date.today() + timedelta(days=90))

@@ -21,7 +21,8 @@
               name="Setting"
               parent="menu_estate_root">
         <menuitem id="estate_menu_action" action="action_estate_property_type"/>
-        <menuitem id="estate_menu_custom_action" action="action_estate_property_tag"/>
+        <menuitem id="estate_menu_tag_action" action="action_estate_property_tag"/>
+        <menuitem id="estate_menu_feature_action" action="action_estate_property_feature"/>
     </menuitem>
 
 </odoo>

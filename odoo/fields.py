@@ -3667,7 +3667,7 @@ class Many2many(_RelationalMulti):
     relation = None                     # name of table
     column1 = None                      # column of table referring to model
     column2 = None                      # column of table referring to comodel
-    auto_join = False                   # whether joins are generated upon search
+    auto_join = False                    # whether joins are generated upon search
     limit = None                        # optional limit to use upon read
     ondelete = 'cascade'                # optional ondelete for the column2 fkey
 
