@@ -1,11 +1,3 @@
-<!--<odoo>-->
-<!--    <menuitem id="estate_menu_root" name="Real Estate">-->
-<!--        <menuitem id="Advertisements_menu" name="Advertisements">-->
-<!--            <menuitem id="estate_menu_action" action="action_estate_property_type"/>-->
-<!--        </menuitem>-->
-<!--    </menuitem>-->
-<!--</odoo>-->
-
 <odoo>
 
     <menuitem id="menu_estate_root"

@@ -109,3 +109,10 @@ class EstateProperty(models.Model):
         ('selling_price', 'CHECK(selling_price >= 0)', 'The Selling Price must be positive.'),
         ('expected_price', 'CHECK(expected_price >= 0 )', 'The Expected Price must be positive.'),
     ]
+
+    @api.ondelete(at_uninstall=True)
+    def _check_state(self):
+        for rec in self:
+            if rec.state == 'canceled' or rec.state == 'new':
+                continue
+            raise UserError("Only new and canceled state allowed to delete!")
