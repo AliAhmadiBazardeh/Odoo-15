@@ -20,9 +20,12 @@
                 <sheet>
                     <group>
                         <div class="col-md-6">
-                            <h1>
-                                <field name="name"/>
-                            </h1>
+                            <group>
+                                <h1>
+                                    <field name="name"/>
+                                </h1>
+                                <field name="sequence"/>
+                            </group>
                         </div>
                     </group>
                     <notebook>
