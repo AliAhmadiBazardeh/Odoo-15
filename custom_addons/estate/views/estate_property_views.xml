@@ -1,4 +1,17 @@
 <odoo>
+    <record id="view_estate_property_search" model="ir.ui.view">
+        <field name="name">estate.property.search</field>
+        <field name="model">estate.property</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="postcode"/>
+                <field name="living_area" filter_domain="[('living_area', '>=', self)]"/>
+                <filter name="available" string="Available" domain="[('state', '=', 'new')]"/>
+            </search>
+        </field>
+    </record>
+
     <!-- Tree View -->
     <record id="view_estate_property_tree" model="ir.ui.view">
         <field name="name">estate.property.tree</field>
@@ -129,5 +142,7 @@
         <field name="res_model">estate.property</field>
         <field name="view_mode">tree,form</field>
         <field name="view_id" ref="view_estate_property_tree"/>
+        <field name="context">{'search_default_available': 1}</field>
+        <field name="search_view_id" ref="view_estate_property_search"/>
     </record>
 </odoo>
