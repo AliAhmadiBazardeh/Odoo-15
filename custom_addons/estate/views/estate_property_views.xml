@@ -42,7 +42,7 @@
                     </h1>
                     <div class="row">
                         <div class="col-md-6">
-                            <field name="tag_ids" widget="many2many_tags"/>
+                            <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
 
                             <group>
                                 <field name="property_type_id"/>
