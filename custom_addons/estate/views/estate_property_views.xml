@@ -7,7 +7,7 @@
                 <field name="name"/>
                 <field name="postcode"/>
                 <field name="living_area" filter_domain="[('living_area', '>=', self)]"/>
-                <filter name="available" string="Available" domain="[('state', '=', 'new')]"/>
+                <filter name="available" string="Available" domain="[('state', '!=', 'sold')]"/>
             </search>
         </field>
     </record>
@@ -142,7 +142,7 @@
         <field name="res_model">estate.property</field>
         <field name="view_mode">tree,form</field>
         <field name="view_id" ref="view_estate_property_tree"/>
-        <field name="context">{'search_default_available': 1}</field>
+        <field name="context">{'search_default_living_area': 80}</field>
         <field name="search_view_id" ref="view_estate_property_search"/>
     </record>
 </odoo>
