@@ -91,6 +91,8 @@ class EstateProperty(models.Model):
                 raise ValidationError("Selling price  cannot be lower than 90% of the expected price.")
 
     def action_sold(self):
+        print("action_sold test inherited 2 ........")
+
         for rec in self:
             if rec.state == 'canceled':
                 raise UserError("Cancelled property cannot be sold.")
