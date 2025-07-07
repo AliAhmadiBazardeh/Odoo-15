@@ -1,7 +1,7 @@
 {
     'name': 'Estate',
     'sequence': -1,
-    'category': 'Real_State/State',
+    'category': 'Estate/Estate',
     'application': True,
     'data': [
         'security/security.xml',
