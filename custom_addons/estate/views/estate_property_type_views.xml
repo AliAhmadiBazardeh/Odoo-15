@@ -17,17 +17,6 @@
         <field name="model">estate.property.type</field>
         <field name="arch" type="xml">
             <form>
-                <header>
-
-                    <button name="%(action_estate_property_offer_test)d"
-                            type="action"
-                            context="{'search_default_filter_by_type': 1, 'property_type_id': active_id}"
-                            string="Offers">
-                        <field name="offer_count"/>
-                    </button>
-                    <field name="offer_count"/>
-
-                </header>
 
 
                 <sheet>
@@ -65,5 +54,7 @@
         <field name="res_model">estate.property.type</field>
         <field name="view_mode">tree,form</field>
         <field name="view_id" ref="view_estate_property_type_tree"/>
+        <field name="groups_id" eval="[(4, ref('estate.group_estate_manager'))]"/>
+
     </record>
 </odoo>

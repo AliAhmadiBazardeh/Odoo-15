@@ -12,7 +12,11 @@ class EstateProperty(models.Model):
             if not property.buyer_id:
                 continue
 
-            journal = self.env['account.journal'].search([('type', '=', 'sale')], limit=1)
+            self.env['estate.property'].check_access_rights('write')
+
+            print(" reached ".center(100, '='))
+
+            journal = self.env['account.journal'].sudo().search([('type', '=', 'sale')], limit=1)
 
             fees = 100
             commission = property.selling_price * 0.06
@@ -37,7 +41,7 @@ class EstateProperty(models.Model):
                 'invoice_line_ids': line_ids,
             }
 
-            invoice = self.env['account.move'].create(values)
+            invoice = self.env['account.move'].sudo().create(values)
             print('invoice created:', invoice)
 
         return result

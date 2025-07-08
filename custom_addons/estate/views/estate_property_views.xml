@@ -23,10 +23,10 @@
                 <field name="name"/>
                 <field name="property_type_id"/>
                 <field name="buyer_id"/>
-                <field name="sale_person_id"/>
-                <field name="bedrooms"/>
-                <field name="living_area"/>
-                <field name="garden_area"/>
+                <field name="create_uid"/>
+                <field name="company_id"/>
+                <field name="living_area" optional="hide"/>
+                <field name="garden_area" optional="hide"/>
                 <field name="total_area"/>
                 <field name="date_availability" optional="hide"/>
                 <field name="expected_price"/>
@@ -48,10 +48,14 @@
                     <t t-name="kanban-box">
                         <div class="oe_kanban_global_click">
                             <field name="name"/>
+                            <div t-if="record.state.raw_value == 'new'">
+                                <p class="text-success">This is new!</p>
+                            </div>
+                             <div t-if="record.state.raw_value == 'sold'">
+                                <p class="text-danger">Sold</p>
+                            </div>
                         </div>
-                        <div t-if="record.state.raw_value == 'new'">
-                            This is new!
-                        </div>
+
                     </t>
                 </templates>
             </kanban>
@@ -79,6 +83,10 @@
                             type="object"
                             string="Cancel"
                             states="new,offer_received,offer_accepted"
+                    />
+                     <button class="btn btn-success"
+                            type="object"
+                            string="Test progressbar"
                     />
                     <field name="state" widget="statusbar"
                            statusbar_visible="new,offer_received,offer_accepted,sold,canceled"/>
@@ -151,6 +159,7 @@
                             <group class="col-6">
                                 <field name="buyer_id"/>
                                 <field name="sale_person_id"/>
+                                <field name="company_id"/>
                             </group>
                         </page>
                     </notebook>
