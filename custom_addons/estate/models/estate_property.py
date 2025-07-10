@@ -1,7 +1,8 @@
-from odoo import models,fields,api
+from odoo import models, fields, api
 from datetime import timedelta, date
 from odoo.exceptions import UserError, ValidationError
 from odoo.tools.float_utils import float_compare, float_is_zero
+
 
 class EstateProperty(models.Model):
     _name = 'estate.property'
@@ -11,11 +12,11 @@ class EstateProperty(models.Model):
     name = fields.Char(required=True)
     description = fields.Text(compute="_compute_description")
     property_type_id = fields.Many2one('estate.property.type', string='Property Type')
-    buyer_id = fields.Many2one('res.partner', string='Buyer',copy=False)
-    sale_person_id = fields.Many2one('res.users', string='Sale Person',default=lambda self: self.env.user)
+    buyer_id = fields.Many2one('res.partner', string='Buyer', copy=False)
+    sale_person_id = fields.Many2one('res.users', string='Sale Person', default=lambda self: self.env.user)
     tag_ids = fields.Many2many("estate.property.tag", string="Tags")
     offer_ids = fields.One2many("estate.property.offer", "property_id", string="Offers")
-    feature_ids = fields.Many2many('estate.property.feature',string="Features")
+    feature_ids = fields.Many2many('estate.property.feature', string="Features")
     company_id = fields.Many2one(
         'res.company',
         required=True,
@@ -72,7 +73,7 @@ class EstateProperty(models.Model):
             prices = record.offer_ids.mapped("price")
             record.best_offer = max(prices) if prices else 0.0
 
-    @api.depends("living_area","garden_area")
+    @api.depends("living_area", "garden_area")
     def _compute_total_area(self):
         for record in self:
             record.total_area = record.living_area + record.garden_area
@@ -91,7 +92,6 @@ class EstateProperty(models.Model):
         for rec in self:
             if float_is_zero(rec.selling_price, precision_digits=2):
                 continue
-
 
             if float_compare(rec.selling_price, rec.expected_price * 0.9, precision_digits=2) < 0:
                 raise ValidationError("Selling price  cannot be lower than 90% of the expected price.")
@@ -113,14 +113,20 @@ class EstateProperty(models.Model):
             rec.state = 'canceled'
         return True
 
-    _sql_constraints = [
-        ('selling_price', 'CHECK(selling_price >= 0)', 'The Selling Price must be positive.'),
-        ('expected_price', 'CHECK(expected_price >= 0 )', 'The Expected Price must be positive.'),
-    ]
 
-    @api.ondelete(at_uninstall=True)
-    def _check_state(self):
-        for rec in self:
-            if rec.state == 'canceled' or rec.state == 'new':
-                continue
-            raise UserError("Only new and canceled state allowed to delete!")
+    def test(self):
+        pass
+
+
+_sql_constraints = [
+    ('selling_price', 'CHECK(selling_price >= 0)', 'The Selling Price must be positive.'),
+    ('expected_price', 'CHECK(expected_price >= 0 )', 'The Expected Price must be positive.'),
+]
+
+
+@api.ondelete(at_uninstall=True)
+def _check_state(self):
+    for rec in self:
+        if rec.state == 'canceled' or rec.state == 'new':
+            continue
+        raise UserError("Only new and canceled state allowed to delete!")

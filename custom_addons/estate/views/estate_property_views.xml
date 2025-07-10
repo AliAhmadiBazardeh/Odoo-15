@@ -85,6 +85,7 @@
                             states="new,offer_received,offer_accepted"
                     />
                      <button class="btn btn-success"
+                             name="test"
                             type="object"
                             string="Test progressbar"
                     />
